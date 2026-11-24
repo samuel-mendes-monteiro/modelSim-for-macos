@@ -19,7 +19,7 @@ Por baixo, a simulação é feita pelo [GHDL](https://github.com/ghdl/ghdl), um 
 
 ### 2. Liberar a primeira abertura
 
-O app não é assinado pela Apple, que cobra US$ 99/ano. Por isso, na primeira vez o macOS bloqueia com a mensagem *"Apple não pôde verificar…"*. Para liberar:
+O app não é assinado pela Apple. Por isso, na primeira vez o macOS bloqueia com a mensagem *"Apple não pôde verificar…"*. Para liberar:
 
 1. Tente abrir o **VHDL Sim** uma vez e clique em **OK** (ou **Concluído**).
 2. Vá em **Ajustes do Sistema → Privacidade e Segurança**, role até o fim e clique em **Abrir Mesmo Assim** ao lado de "VHDL Sim".
