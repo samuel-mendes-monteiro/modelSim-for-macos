@@ -153,6 +153,7 @@ npm install
 npm run dev        # abre o app em modo desenvolvimento
 npm test           # testes (parser VCD, bases numéricas, force, integração com o GHDL)
 npm run typecheck  # checagem de tipos
+npm run docs       # gera docs/arquitetura.pdf a partir de docs/arquitetura.md
 ```
 
 ### Gerar o instalador (.dmg)
@@ -177,15 +178,18 @@ O app é assinado *ad-hoc* (sem conta de desenvolvedor Apple), por isso aparece 
    Ou pelo site: **Releases → Draft a new release**, crie a tag, arraste o `.dmg` e o `.zip` e clique em **Publish release**.
 3. O link de download fica na página **Releases** do repositório.
 
-### Estrutura
+### Arquitetura
+
+O código é dividido em camadas (`shared`, `main`, `preload`, `renderer`) com regras de dependência verificadas por teste. Antes de mexer no código, leia **[docs/arquitetura.pdf](docs/arquitetura.pdf)**: ele explica as camadas, as pastas, os fluxos de compilar e simular, os padrões de código e tem receitas para as mudanças mais comuns.
+
+O PDF é gerado a partir de [docs/arquitetura.md](docs/arquitetura.md) com `npm run docs`.
 
 ```
-src/main/       processo principal: arquivos, menus, GHDL (ghdl.ts), force (forceTb.ts)
-src/preload/    ponte segura entre a interface e o processo principal
-src/renderer/   interface React: projeto, editor, Transcript, visualizador de ondas
-src/shared/     código comum: parser VCD, bases numéricas, comando force
-tests/          testes (Vitest)
-examples/       projeto de exemplo (contador + testbench)
+src/shared/     código puro: domínio, contrato, VHDL, ondas, force
+src/main/       processo principal: janela, menus, IPC, arquivos, GHDL
+src/preload/    ponte segura (window.api)
+src/renderer/   interface React: app/ (casca) e features/ (projeto, editor, transcript, simulação, ondas)
+tests/          testes por camada + regras de arquitetura
 ```
 
 Observações:
